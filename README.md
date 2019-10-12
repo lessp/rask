@@ -11,7 +11,7 @@ Text.(
   make("Hello World!")
   ->fontFamily("Roboto")
   ->fontSize(32)
-  ->color(Color.Red)
+  ->color(Red)
 );
 ```
 
@@ -40,7 +40,7 @@ module HelloRask = {
     let greetMe =
       Text.(
         make(greeting)
-        ->color(Color.Pink)
+        ->color(Pink)
         ->fontFamily("sans-serif")
         ->fontSize(32)
         ->onClick(toggleText)
@@ -49,17 +49,17 @@ module HelloRask = {
 
     View.(
       make("div")
-      ->backgroundColor(Color.White)
-      ->width(Size.Px(320))
-      ->height(Size.Px(320))
-      ->padding(~x=Size.Px(32), ~y=Size.Px(32))
+      ->backgroundColor(White)
+      ->width(Px(320))
+      ->height(Px(320))
+      ->padding(~x=Px(32), ~y=Px(32))
       ->rounded(~all=5, ())
       ->shadow(
           ~x=0,
           ~y=8,
           ~blur=24,
           ~spread=12,
-          ~color=Color.Rgba(0, 0, 0, 0.05),
+          ~color=Rgba(0, 0, 0, 0.05),
         )
       ->children(greetMe)
       ->toReactElement

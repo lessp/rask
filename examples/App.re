@@ -5,13 +5,13 @@ module Container = {
   let make = (~children as c) => {
     View.(
       make("div")
-      ->backgroundColor(Color.Hex("7cc0c0"))
-      ->display(Display.Flex)
-      ->flexDirection(Flex.FlexDirection.Column)
-      ->justifyContent(Flex.JustifyContent.Center)
-      ->alignItems(Flex.AlignItems.Center)
-      ->height(Size.Vh(100))
-      ->width(Size.Vw(100))
+      ->backgroundColor(Hex("7cc0c0"))
+      ->display(Flex)
+      ->flexDirection(Column)
+      ->justifyContent(Center)
+      ->alignItems(Center)
+      ->height(Vh(100))
+      ->width(Vw(100))
       ->children(c)
       ->toReactElement
     );
@@ -34,7 +34,7 @@ module Hello = {
       Text.(
         make("Click the text below!")
         ->fontSize(18)
-        ->color(Color.DarkGrey)
+        ->color(DarkGrey)
         ->toReactElement
       );
 
@@ -43,28 +43,22 @@ module Hello = {
         make(currentText)
         ->fontFamily("sans-serif")
         ->fontSize(32)
-        ->color(Color.Hex("7cc0c0"))
+        ->color(Hex("7cc0c0"))
         ->onClick(toggleGreeting)
         ->toReactElement
       );
 
     View.(
       make("div")
-      ->backgroundColor(Color.White)
-      ->display(Display.Flex)
-      ->alignItems(Flex.AlignItems.Center)
-      ->flexDirection(Flex.FlexDirection.Column)
-      ->justifyContent(Flex.JustifyContent.Center)
-      ->height(Size.Px(320))
-      ->width(Size.Px(320))
-      ->padding(~x=Size.Px(32), ~y=Size.Px(32))
-      ->shadow(
-          ~x=0,
-          ~y=14,
-          ~blur=22,
-          ~spread=-3,
-          ~color=Color.Rgba(0, 0, 0, 0.15),
-        )
+      ->backgroundColor(White)
+      ->display(Flex)
+      ->alignItems(Center)
+      ->flexDirection(Column)
+      ->justifyContent(Center)
+      ->height(Px(320))
+      ->width(Px(320))
+      ->padding(~x=Px(32), ~y=Px(32))
+      ->shadow(~x=0, ~y=14, ~blur=22, ~spread=-3, ~color=Rgba(0, 0, 0, 0.15))
       ->rounded(~all=5, ())
       ->children([|clickMe, helloWorld|]->React.array)
       ->toReactElement

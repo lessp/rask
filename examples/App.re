@@ -18,17 +18,10 @@ module Container = {
   };
 };
 
-module Hello = {
+module HelloRask = {
   [@react.component]
   let make = () => {
-    let (currentText, setText) = React.useState(() => "Hello!");
-
-    let toggleGreeting = _ =>
-      setText(
-        fun
-        | "Hello!" => "World!"
-        | _ => "Hello!",
-      );
+    let (currentText, setText) = React.useState(() => "Hello");
 
     let clickMe =
       Text.(
@@ -40,26 +33,17 @@ module Hello = {
 
     let helloWorld =
       Text.(
-        make(currentText)
-        ->fontFamily("sans-serif")
-        ->fontSize(32)
-        ->color(Hex("7cc0c0"))
-        ->onClick(toggleGreeting)
+        Theme.title(currentText)
+        ->onClick(_event =>
+            setText(prevGreeting =>
+              prevGreeting == "Hello" ? "Rask!" : "Hello"
+            )
+          )
         ->toReactElement
       );
 
     View.(
-      make("div")
-      ->backgroundColor(White)
-      ->display(Flex)
-      ->alignItems(Center)
-      ->flexDirection(Column)
-      ->justifyContent(Center)
-      ->height(Px(320))
-      ->width(Px(320))
-      ->padding(~x=Px(32), ~y=Px(32))
-      ->shadow(~x=0, ~y=14, ~blur=22, ~spread=-3, ~color=Rgba(0, 0, 0, 0.15))
-      ->rounded(~all=5, ())
+      Theme.card
       ->children([|clickMe, helloWorld|]->React.array)
       ->toReactElement
     );
@@ -67,4 +51,4 @@ module Hello = {
 };
 
 [@react.component]
-let make = () => <Container> <Hello /> </Container>;
+let make = () => <Container> <HelloRask /> </Container>;

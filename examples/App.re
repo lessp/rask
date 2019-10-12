@@ -1,11 +1,11 @@
-open Haste;
+open Rask;
 
 module Container = {
   [@react.component]
   let make = (~children as c) => {
     View.(
       make("div")
-      ->backgroundColor(Color.Hex("#eaecec"))
+      ->backgroundColor(Color.Hex("7cc0c0"))
       ->display(Display.Flex)
       ->flexDirection(Flex.FlexDirection.Column)
       ->justifyContent(Flex.JustifyContent.Center)
@@ -31,14 +31,19 @@ module Hello = {
       );
 
     let clickMe =
-      Text.(make("Click the text below!")->fontSize(18)->toReactElement);
+      Text.(
+        make("Click the text below!")
+        ->fontSize(18)
+        ->color(Color.DarkGrey)
+        ->toReactElement
+      );
 
     let helloWorld =
       Text.(
         make(currentText)
         ->fontFamily("sans-serif")
         ->fontSize(32)
-        ->color(Color.Pink)
+        ->color(Color.Hex("7cc0c0"))
         ->onClick(toggleGreeting)
         ->toReactElement
       );
@@ -49,16 +54,16 @@ module Hello = {
       ->display(Display.Flex)
       ->alignItems(Flex.AlignItems.Center)
       ->flexDirection(Flex.FlexDirection.Column)
-      ->justifyContent(Flex.JustifyContent.SpaceEvenly)
+      ->justifyContent(Flex.JustifyContent.Center)
       ->height(Size.Px(320))
       ->width(Size.Px(320))
       ->padding(~x=Size.Px(32), ~y=Size.Px(32))
       ->shadow(
           ~x=0,
-          ~y=10,
-          ~blur=15,
+          ~y=14,
+          ~blur=22,
           ~spread=-3,
-          ~color=Color.Rgba(0, 0, 0, 0.05),
+          ~color=Color.Rgba(0, 0, 0, 0.15),
         )
       ->rounded(~all=5, ())
       ->children([|clickMe, helloWorld|]->React.array)

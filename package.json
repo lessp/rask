@@ -1,5 +1,5 @@
 {
-  "name": "haste",
+  "name": "rask",
   "version": "0.1.0",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,7 @@
   },
   "author": "lessp <ekander.tom@gmail.com>",
   "license": "MIT",
-  "main": "./src/Haste.re",
+  "main": "./src/Rask.re",
   "files": [
     "src/*.re",
     "bsconfig.json"
@@ -39,12 +39,12 @@
     "react-dom": "^16.8.0",
     "reason-react": ">=0.7.0"
   },
-  "homepage": "https://github.com/lessp/haste#readme",
+  "homepage": "https://github.com/lessp/rask#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lessp/haste.git"
+    "url": "https://github.com/lessp/rask.git"
   },
   "bugs": {
-    "url": "https://github.com/lessp/haste/issues"
+    "url": "https://github.com/lessp/rask/issues"
   }
 }

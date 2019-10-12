@@ -1,4 +1,4 @@
-# 💨 Haste
+# 💨 Rask
 
 An continuous exploration of a SwiftUI-like syntax for ReasonML.
 
@@ -29,7 +29,7 @@ npm run example
 Here's an example in React, solely because it was easiest to get something up and running.
 
 ```ocaml
-module Haste = {
+module HelloRask = {
   let (greeting, setGreeting) = React.useState(() => "Hello");
 
   let toggleText = _event =>
@@ -64,7 +64,7 @@ module Haste = {
   );
 };
 
-<Haste />
+<HelloRask />
 ```
 
 ## License

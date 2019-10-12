@@ -13,6 +13,7 @@ module Color = {
     | Pink
     | Red
     | White
+    | DarkGrey
     | Rgba(int, int, int, float)
     | Hex(string);
 
@@ -20,6 +21,7 @@ module Color = {
     Tablecloth.(
       fun
       | Black => "black"
+      | DarkGrey => "darkgrey"
       | Linen => "linen"
       | Pink => "pink"
       | Red => "red"

@@ -1,9 +1,10 @@
 open Jest;
 open Expect;
 open ReactTestingLibrary;
-open Haste;
 
 module Hello = {
+  open Rask;
+
   [@react.component]
   let make = () =>
     Text.(
@@ -15,7 +16,7 @@ module Hello = {
     );
 };
 
-describe("Haste", () => {
+describe("Rask", () => {
   afterEach(cleanup);
 
   test("renders", () =>

@@ -1,4 +1,4 @@
-# 💨 Haste
+# 💨 Rask
 
 An continuous exploration of a SwiftUI-like syntax for ReasonML.
 
@@ -7,8 +7,8 @@ An continuous exploration of a SwiftUI-like syntax for ReasonML.
 ## Syntax
 
 ```ocaml
-Text.(
-  make("Hello World!")
+Rask.(
+  text("Hello World!")
   ->fontFamily("Roboto")
   ->fontSize(32)
   ->color(Color.Red)
@@ -29,15 +29,17 @@ npm run example
 Here's an example in React, solely because it was easiest to get something up and running.
 
 ```ocaml
-module Haste = {
+module RaskExample = {
+  open Rask;
+
   let (greeting, setGreeting) = React.useState(() => "Hello");
 
   let toggleText = _event =>
     setGreeting(prevGreeting => prevGreeting == "Hello" ? "World!" : "Hello");
 
   let greetMe =
-    Text.(
-      make(greeting)
+    Rask.(
+      text(greeting)
       ->color(Color.Pink)
       ->fontFamily("sans-serif")
       ->fontSize(32)
@@ -45,8 +47,8 @@ module Haste = {
       ->toReactElement
     );
 
-  View.(
-    make("div")
+  Rask.(
+    view("div")
     ->backgroundColor(Color.White)
     ->width(Size.Px(320))
     ->height(Size.Px(320))
@@ -64,7 +66,7 @@ module Haste = {
   );
 };
 
-<Haste />
+<RaskExample />
 ```
 
 ## License

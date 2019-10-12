@@ -1,13 +1,13 @@
 open Jest;
 open Expect;
 open ReactTestingLibrary;
-open Haste;
+open Rask;
 
 module Hello = {
   [@react.component]
   let make = () =>
-    Text.(
-      make("Hello World!")
+    Rask.(
+      text("Hello World!")
       ->fontFamily("Roboto")
       ->fontSize(32)
       ->color(Color.Red)

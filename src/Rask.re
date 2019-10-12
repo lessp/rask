@@ -384,3 +384,45 @@ module Text = {
     make();
   };
 };
+
+let text = `Text(Text.make);
+let view = `View(View.make);
+
+/* Text Functions */
+let color =
+  fun
+  | `Text(_) => Text.color
+  | `View(_) => View.color;
+
+let fontFamily =
+  fun
+  | `Text(_) => Text.fontFamily
+  | `View(_) => View.fontFamily;
+
+let fontSize = Text.fontSize;
+let onChange = Text.onChange;
+let onClick = Text.onClick;
+
+/* View Functions */
+let alignItems = View.alignItems;
+let backgroundColor = View.backgroundColor;
+let boxSizing = View.boxSizing;
+let children = View.children;
+let color = View.color;
+let display = View.display;
+let flexDirection = View.flexDirection;
+let fontFamily = View.fontFamily;
+let fontSize = View.fontSize;
+let justifyContent = View.justifyContent;
+let height = View.height;
+let onChange = View.onChange;
+let onClick = View.onClick;
+let padding = View.padding;
+let rounded = View.rounded;
+let width = View.width;
+let shadow = View.shadow;
+
+let toReactElement =
+  fun
+  | `Text(textElement) => Text.toReactElement(textElement)
+  | `View(viewElement) => View.toReactElement(viewElement);

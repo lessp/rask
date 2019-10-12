@@ -7,11 +7,11 @@ module Hello = {
   [@react.component]
   let make = () =>
     Text.(
-      create("Hello World!")
-      |> fontFamily("Roboto")
-      |> fontSize(32)
-      |> color(Color.Red)
-      |> toReactElement
+      make("Hello World!")
+      ->fontFamily("Roboto")
+      ->fontSize(32)
+      ->color(Color.Red)
+      ->toReactElement
     );
 };
 

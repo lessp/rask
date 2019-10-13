@@ -48,7 +48,7 @@ module HelloRask = {
       );
 
     View.(
-      make("div")
+      make()
       ->backgroundColor(White)
       ->width(Px(320))
       ->height(Px(320))
@@ -62,7 +62,7 @@ module HelloRask = {
           ~color=Rgba(0, 0, 0, 0.05),
         )
       ->children(greetMe)
-      ->toReactElement
+      ->reactElement("div")
     );
   };
 };

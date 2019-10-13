@@ -4,7 +4,7 @@ module Container = {
   [@react.component]
   let make = (~children as c) => {
     View.(
-      make("div")
+      make()
       ->backgroundColor(Hex("7cc0c0"))
       ->display(Flex)
       ->flexDirection(Column)
@@ -13,7 +13,7 @@ module Container = {
       ->height(Vh(100))
       ->width(Vw(100))
       ->children(c)
-      ->toReactElement
+      ->reactElement("div")
     );
   };
 };
@@ -23,30 +23,12 @@ module HelloRask = {
   let make = () => {
     let (currentText, setText) = React.useState(() => "Hello");
 
-    let clickMe =
-      Text.(
-        make("Click the text below!")
-        ->fontSize(18)
-        ->color(DarkGrey)
-        ->toReactElement
-      );
+    let toggleGreeting = _event =>
+      setText(prevGreeting => prevGreeting == "Hello" ? "Rask!" : "Hello");
 
-    let helloWorld =
-      Text.(
-        Theme.title(currentText)
-        ->onClick(_event =>
-            setText(prevGreeting =>
-              prevGreeting == "Hello" ? "Rask!" : "Hello"
-            )
-          )
-        ->toReactElement
-      );
-
-    View.(
-      Theme.card
-      ->children([|clickMe, helloWorld|]->React.array)
-      ->toReactElement
-    );
+    <Components.Card>
+      <Components.Title text=currentText onClick=toggleGreeting />
+    </Components.Card>;
   };
 };
 

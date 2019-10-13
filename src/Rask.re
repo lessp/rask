@@ -207,7 +207,6 @@ module View = {
     children: ReasonReact.reactElement,
     color: Color.t,
     display: Display.t,
-    elementType: string,
     flexDirection: Flex.FlexDirection.t,
     fontFamily: string,
     fontSize: FontSize.t,
@@ -228,7 +227,6 @@ module View = {
     children: React.null,
     color: Color.Black,
     display: Display.empty,
-    elementType: "div",
     flexDirection: Flex.FlexDirection.empty,
     fontFamily: "inherit",
     fontSize: FontSize.make(16),
@@ -243,7 +241,7 @@ module View = {
   };
 
   /* init */
-  let make = elementType => {...empty, elementType};
+  let make = () => empty;
 
   /* all modifier functions */
   let alignItems = (element, alignItems) => {...element, alignItems};
@@ -292,50 +290,51 @@ module View = {
     shadow: Shadow.make(~x, ~y, ~blur, ~spread, ~color),
   };
 
-  let toReactElement = element => {
-    [@react.component]
-    let make = () => {
-      let {
-        alignItems,
-        backgroundColor,
-        boxSizing,
-        color,
-        children,
-        display,
-        flexDirection,
-        fontSize,
-        fontFamily,
-        justifyContent,
-        height,
-        onChange,
-        onClick,
-        padding,
-        rounded,
-        width,
-        shadow,
-      } = element;
+  let reactElement = (element, elementType) => {
+    let {
+      alignItems,
+      backgroundColor,
+      boxSizing,
+      color,
+      children,
+      display,
+      flexDirection,
+      fontSize,
+      fontFamily,
+      justifyContent,
+      height,
+      onChange,
+      onClick,
+      padding,
+      rounded,
+      width,
+      shadow,
+    } = element;
 
-      let styles =
-        ReactDOMRe.Style.make(
-          ~alignItems=alignItems->Flex.AlignItems.toString,
-          ~backgroundColor=backgroundColor->Color.toString,
-          ~borderRadius=rounded->Rounded.toString,
-          ~boxShadow=shadow->Shadow.toString,
-          ~boxSizing=boxSizing->BoxSizing.parse,
-          ~color=color->Color.toString,
-          ~display=display->Display.toString,
-          ~flexDirection=flexDirection->Flex.FlexDirection.toString,
-          ~fontFamily,
-          ~fontSize=fontSize->FontSize.toString,
-          ~justifyContent=justifyContent->Flex.JustifyContent.toString,
-          ~height=height->Size.parse,
-          ~padding=padding->Padding.parse,
-          ~width=width->Size.parse,
-          (),
-        );
-      <div onChange onClick style=styles> children </div>;
-    };
-    make();
+    let styles =
+      ReactDOMRe.Style.make(
+        ~alignItems=alignItems->Flex.AlignItems.toString,
+        ~backgroundColor=backgroundColor->Color.toString,
+        ~borderRadius=rounded->Rounded.toString,
+        ~boxShadow=shadow->Shadow.toString,
+        ~boxSizing=boxSizing->BoxSizing.parse,
+        ~color=color->Color.toString,
+        ~display=display->Display.toString,
+        ~flexDirection=flexDirection->Flex.FlexDirection.toString,
+        ~fontFamily,
+        ~fontSize=fontSize->FontSize.toString,
+        ~justifyContent=justifyContent->Flex.JustifyContent.toString,
+        ~height=height->Size.parse,
+        ~padding=padding->Padding.parse,
+        ~width=width->Size.parse,
+        (),
+      );
+
+    ReactDOMRe.createElement(
+      elementType,
+      ~props=ReactDOMRe.props(~onClick, ~onChange, ~style=styles, ()),
+      [|children|],
+    );
   };
 };
 
@@ -368,21 +367,22 @@ module Text = {
   let fontSize = (element, fontSize) => {...element, fontSize};
   let onChange = (element, onChange) => {...element, onChange};
   let onClick = (element, onClick) => {...element, onClick};
+  let value = (element, text) => {...element, text};
 
-  let toReactElement = element => {
-    [@react.component]
-    let make = () => {
-      let {text, fontFamily, color, fontSize, onChange, onClick} = element;
+  let reactElement = element => {
+    let {text, fontFamily, color, fontSize, onChange, onClick} = element;
+    let styles =
+      ReactDOMRe.Style.make(
+        ~color=color->Color.toString,
+        ~fontSize=fontSize->FontSize.toString,
+        ~fontFamily,
+        (),
+      );
 
-      let styles =
-        ReactDOMRe.Style.make(
-          ~color=color->Color.toString,
-          ~fontSize=fontSize->FontSize.toString,
-          ~fontFamily,
-          (),
-        );
-      <p onChange onClick style=styles> {React.string(text)} </p>;
-    };
-    make();
+    ReactDOMRe.createElement(
+      "p",
+      ~props=ReactDOMRe.props(~onClick, ~onChange, ~style=styles, ()),
+      [|text->React.string|],
+    );
   };
 };
